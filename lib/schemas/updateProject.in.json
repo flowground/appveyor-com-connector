@@ -1,0 +1,1976 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "properties": {
+                                "accountName": {
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "projectId": {
+                                    "minimum": 0,
+                                    "type": "integer"
+                                },
+                                "slug": {
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "projectId"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "properties": {
+                                "created": {
+                                    "format": "date-time",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "updated": {
+                                    "format": "date-time",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "properties": {
+                                "accountId": {
+                                    "minimum": 0,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                },
+                                "alwaysBuildClosedPullRequests": {
+                                    "type": "boolean"
+                                },
+                                "builds": {
+                                    "description": "Only non-empty for response from getProjects.",
+                                    "items": {
+                                        "allOf": [
+                                            {
+                                                "properties": {
+                                                    "branch": {
+                                                        "type": "string"
+                                                    },
+                                                    "buildId": {
+                                                        "minimum": 0,
+                                                        "type": "integer"
+                                                    },
+                                                    "message": {
+                                                        "type": "string"
+                                                    },
+                                                    "version": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            {
+                                                "properties": {
+                                                    "created": {
+                                                        "format": "date-time",
+                                                        "readOnly": true,
+                                                        "type": "string"
+                                                    },
+                                                    "updated": {
+                                                        "format": "date-time",
+                                                        "readOnly": true,
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            {
+                                                "properties": {
+                                                    "authorName": {
+                                                        "type": "string"
+                                                    },
+                                                    "authorUsername": {
+                                                        "type": "string"
+                                                    },
+                                                    "buildNumber": {
+                                                        "minimum": 0,
+                                                        "type": "integer"
+                                                    },
+                                                    "commitId": {
+                                                        "type": "string"
+                                                    },
+                                                    "committed": {
+                                                        "format": "date-time",
+                                                        "type": "string"
+                                                    },
+                                                    "committerName": {
+                                                        "type": "string"
+                                                    },
+                                                    "committerUsername": {
+                                                        "type": "string"
+                                                    },
+                                                    "finished": {
+                                                        "format": "date-time",
+                                                        "type": "string"
+                                                    },
+                                                    "isTag": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "jobs": {
+                                                        "description": "Always empty in getProjectHistory and startDeployment responses.",
+                                                        "items": {
+                                                            "allOf": [
+                                                                {
+                                                                    "allOf": [
+                                                                        {
+                                                                            "properties": {
+                                                                                "created": {
+                                                                                    "format": "date-time",
+                                                                                    "readOnly": true,
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "updated": {
+                                                                                    "format": "date-time",
+                                                                                    "readOnly": true,
+                                                                                    "type": "string"
+                                                                                }
+                                                                            },
+                                                                            "type": "object"
+                                                                        },
+                                                                        {
+                                                                            "properties": {
+                                                                                "finished": {
+                                                                                    "format": "date-time",
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "jobId": {
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "name": {
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "started": {
+                                                                                    "format": "date-time",
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "status": {
+                                                                                    "enum": [
+                                                                                        "cancelled",
+                                                                                        "cancelling",
+                                                                                        "failed",
+                                                                                        "queued",
+                                                                                        "running",
+                                                                                        "starting",
+                                                                                        "success"
+                                                                                    ],
+                                                                                    "type": "string"
+                                                                                }
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "properties": {
+                                                                        "allowFailure": {
+                                                                            "type": "boolean"
+                                                                        },
+                                                                        "artifactsCount": {
+                                                                            "minimum": 0,
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "compilationErrorsCount": {
+                                                                            "minimum": 0,
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "compilationMessagesCount": {
+                                                                            "minimum": 0,
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "compilationWarningsCount": {
+                                                                            "minimum": 0,
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "failedTestsCount": {
+                                                                            "minimum": 0,
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "messagesCount": {
+                                                                            "minimum": 0,
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "osType": {
+                                                                            "enum": [
+                                                                                "Ubuntu",
+                                                                                "Windows"
+                                                                            ],
+                                                                            "type": "string"
+                                                                        },
+                                                                        "passedTestsCount": {
+                                                                            "minimum": 0,
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "testsCount": {
+                                                                            "minimum": 0,
+                                                                            "type": "integer"
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "type": "array"
+                                                    },
+                                                    "messageExtended": {
+                                                        "type": "string"
+                                                    },
+                                                    "messages": {
+                                                        "items": {
+                                                            "properties": {
+                                                                "category": {
+                                                                    "enum": [
+                                                                        "information",
+                                                                        "warning"
+                                                                    ],
+                                                                    "type": "string"
+                                                                },
+                                                                "created": {
+                                                                    "format": "date-time",
+                                                                    "type": "string"
+                                                                },
+                                                                "message": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                    },
+                                                    "projectId": {
+                                                        "minimum": 0,
+                                                        "type": "integer"
+                                                    },
+                                                    "pullRequestId": {
+                                                        "minimum": 1,
+                                                        "type": "integer"
+                                                    },
+                                                    "pullRequestName": {
+                                                        "type": "string"
+                                                    },
+                                                    "started": {
+                                                        "format": "date-time",
+                                                        "type": "string"
+                                                    },
+                                                    "status": {
+                                                        "enum": [
+                                                            "cancelled",
+                                                            "cancelling",
+                                                            "failed",
+                                                            "queued",
+                                                            "running",
+                                                            "starting",
+                                                            "success"
+                                                        ],
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        ]
+                                    },
+                                    "readOnly": true,
+                                    "type": "array"
+                                },
+                                "currentBuildId": {
+                                    "minimum": 0,
+                                    "type": "integer"
+                                },
+                                "disablePullRequestWebhooks": {
+                                    "type": "boolean"
+                                },
+                                "disablePushWebhooks": {
+                                    "type": "boolean"
+                                },
+                                "enableDeploymentInPullRequests": {
+                                    "type": "boolean"
+                                },
+                                "enableSecureVariablesInPullRequests": {
+                                    "type": "boolean"
+                                },
+                                "enableSecureVariablesInPullRequestsFromSameRepo": {
+                                    "type": "boolean"
+                                },
+                                "isGitHubApp": {
+                                    "type": "boolean"
+                                },
+                                "isPrivate": {
+                                    "type": "boolean"
+                                },
+                                "nuGetFeed": {
+                                    "description": "Not present in response from addProject.",
+                                    "allOf": [
+                                        {
+                                            "properties": {
+                                                "created": {
+                                                    "format": "date-time",
+                                                    "readOnly": true,
+                                                    "type": "string"
+                                                },
+                                                "updated": {
+                                                    "format": "date-time",
+                                                    "readOnly": true,
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        {
+                                            "properties": {
+                                                "accountId": {
+                                                    "minimum": 0,
+                                                    "type": "integer"
+                                                },
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "isPrivateProject": {
+                                                    "type": "boolean"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "nuGetFeedId": {
+                                                    "type": "integer"
+                                                },
+                                                "projectId": {
+                                                    "minimum": 0,
+                                                    "type": "integer"
+                                                },
+                                                "publishingEnabled": {
+                                                    "type": "boolean"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                },
+                                "repositoryBranch": {
+                                    "description": "Not present in response from addProject.",
+                                    "type": "string"
+                                },
+                                "repositoryName": {
+                                    "type": "string"
+                                },
+                                "repositoryScm": {
+                                    "enum": [
+                                        "git",
+                                        "mercurial",
+                                        "subversion"
+                                    ],
+                                    "type": "string"
+                                },
+                                "repositoryType": {
+                                    "enum": [
+                                        "bitBucket",
+                                        "git",
+                                        "gitHub",
+                                        "gitLab",
+                                        "kiln",
+                                        "mercurial",
+                                        "stash",
+                                        "subversion",
+                                        "vso"
+                                    ],
+                                    "type": "string"
+                                },
+                                "rollingBuilds": {
+                                    "type": "boolean"
+                                },
+                                "rollingBuildsDoNotCancelRunningBuilds": {
+                                    "type": "boolean"
+                                },
+                                "rollingBuildsOnlyForPullRequests": {
+                                    "type": "boolean"
+                                },
+                                "saveBuildCacheInPullRequests": {
+                                    "type": "boolean"
+                                },
+                                "securityDescriptor": {
+                                    "description": "Not present in response from addProject. Not always present in response from getProjects (only after updateProject or startBuild?).",
+                                    "properties": {
+                                        "accessRightDefinitions": {
+                                            "items": {
+                                                "properties": {
+                                                    "description": {
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "enum": [
+                                                            "Delete",
+                                                            "Deploy",
+                                                            "RunBuild",
+                                                            "Update",
+                                                            "View"
+                                                        ],
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "name"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "roleAces": {
+                                            "items": {
+                                                "properties": {
+                                                    "accessRights": {
+                                                        "items": {
+                                                            "properties": {
+                                                                "allowed": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "name": {
+                                                                    "enum": [
+                                                                        "Delete",
+                                                                        "Deploy",
+                                                                        "RunBuild",
+                                                                        "Update",
+                                                                        "View"
+                                                                    ],
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "name"
+                                                            ],
+                                                            "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                    },
+                                                    "isAdmin": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "roleId": {
+                                                        "minimum": 0,
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "skipBranchesWithoutAppveyorYml": {
+                                    "type": "boolean"
+                                },
+                                "tags": {
+                                    "description": "Comma-separated list of project tags for dynamic grouping.\nAppears that any input is accepted.  The returned value only\ncontains case-preserving but insensitive unique values where\nspaces around \",\" are removed but otherwise preserved.  Empty\nvalues and items are allowed.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "repositoryName"
+                            ],
+                            "type": "object"
+                        }
+                    ]
+                },
+                {
+                    "example": {
+                        "accountId": 2,
+                        "accountName": "appvyr",
+                        "builds": [],
+                        "configuration": {
+                            "afterBuildScripts": [],
+                            "afterDeployScripts": [],
+                            "afterTestScripts": [],
+                            "artifacts": [],
+                            "assemblyFileVersionFormat": "{version}",
+                            "assemblyInfoFile": "**\\AssemblyInfo.*",
+                            "assemblyInformationalVersionFormat": "{version}",
+                            "assemblyVersionFormat": "{version}",
+                            "beforeBuildScripts": [],
+                            "beforeDeployScripts": [],
+                            "beforeTestScripts": [],
+                            "buildMode": "msbuild",
+                            "buildScripts": [],
+                            "configuration": [],
+                            "deployMode": "providers",
+                            "deployScripts": [],
+                            "deployments": [],
+                            "environmentVariables": [],
+                            "environmentVariablesMatrix": [],
+                            "excludeBranches": [],
+                            "hostsEntries": [],
+                            "includeBranches": [],
+                            "initScripts": [],
+                            "installScripts": [],
+                            "matrixAllowFailures": [],
+                            "matrixFastFinish": false,
+                            "msBuildVerbosity": "minimal",
+                            "notifications": [],
+                            "onBuildErrorScripts": [],
+                            "onBuildSuccessScripts": [],
+                            "operatingSystem": [],
+                            "packageAzureCloudServiceProjects": false,
+                            "packageNuGetProjects": false,
+                            "packageWebApplicationProjects": false,
+                            "packageWebApplicationProjectsXCopy": false,
+                            "patchAssemblyInfo": false,
+                            "platform": [],
+                            "services": [],
+                            "shallowClone": false,
+                            "testAssemblies": [],
+                            "testCategories": [],
+                            "testCategoriesMatrix": [],
+                            "testMode": "auto",
+                            "testScripts": []
+                        },
+                        "created": "2014-08-16T00:52:15.6604826+00:00",
+                        "ignoreAppveyorYml": false,
+                        "isPrivate": false,
+                        "name": "demo-app",
+                        "nextBuildNumber": 1,
+                        "nuGetFeed": {
+                            "created": "2014-08-16T00:52:16.9886427+00:00",
+                            "id": "demo-app-tw5iw2wk3bl1",
+                            "name": "Project demo-app",
+                            "publishingEnabled": false
+                        },
+                        "projectId": 43682,
+                        "repositoryBranch": "master",
+                        "repositoryName": "FeodorFitsner/demo-app",
+                        "repositoryScm": "git",
+                        "repositoryType": "gitHub",
+                        "securityDescriptor": {
+                            "accessRightDefinitions": [
+                                {
+                                    "description": "View",
+                                    "name": "View"
+                                },
+                                {
+                                    "description": "Run build",
+                                    "name": "RunBuild"
+                                },
+                                {
+                                    "description": "Update settings",
+                                    "name": "Update"
+                                },
+                                {
+                                    "description": "Delete project",
+                                    "name": "Delete"
+                                }
+                            ],
+                            "roleAces": [
+                                {
+                                    "accessRights": [
+                                        {
+                                            "allowed": true,
+                                            "name": "View"
+                                        },
+                                        {
+                                            "allowed": true,
+                                            "name": "RunBuild"
+                                        },
+                                        {
+                                            "allowed": true,
+                                            "name": "Update"
+                                        },
+                                        {
+                                            "allowed": true,
+                                            "name": "Delete"
+                                        }
+                                    ],
+                                    "isAdmin": true,
+                                    "name": "Administrator",
+                                    "roleId": 4
+                                },
+                                {
+                                    "accessRights": [
+                                        {
+                                            "name": "View"
+                                        },
+                                        {
+                                            "name": "RunBuild"
+                                        },
+                                        {
+                                            "name": "Update"
+                                        },
+                                        {
+                                            "name": "Delete"
+                                        }
+                                    ],
+                                    "isAdmin": false,
+                                    "name": "User",
+                                    "roleId": 5
+                                }
+                            ]
+                        },
+                        "skipBranchesWithoutAppveyorYml": false,
+                        "slug": "demo-app-335",
+                        "versionFormat": "1.0.{build}",
+                        "webhookId": "rca5vb5qqu",
+                        "webhookUrl": "https://ci.appveyor.com/api/github/webhook?id=rca5vb5qqu"
+                    },
+                    "properties": {
+                        "buildPriority": {
+                            "minimum": 1,
+                            "type": "integer"
+                        },
+                        "configuration": {
+                            "properties": {
+                                "afterBuildScripts": {
+                                    "items": {
+                                        "properties": {
+                                            "language": {
+                                                "enum": [
+                                                    "cmd",
+                                                    "ps",
+                                                    "pwsh",
+                                                    "sh"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "script": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "script"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "afterDeployScripts": {
+                                    "items": {
+                                        "properties": {
+                                            "language": {
+                                                "enum": [
+                                                    "cmd",
+                                                    "ps",
+                                                    "pwsh",
+                                                    "sh"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "script": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "script"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "afterTestScripts": {
+                                    "items": {
+                                        "properties": {
+                                            "language": {
+                                                "enum": [
+                                                    "cmd",
+                                                    "ps",
+                                                    "pwsh",
+                                                    "sh"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "script": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "script"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "artifacts": {
+                                    "items": {
+                                        "properties": {
+                                            "name": {
+                                                "minLength": 0,
+                                                "title": "Deployment name",
+                                                "type": "string"
+                                            },
+                                            "path": {
+                                                "description": "Path glob of artifact files.\nNote that updateProject does not require path, but omitting path\nresults in post-build error \"Collecting artifacts... Value cannot\nbe null.  Parameter name: input\"\n",
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "description": "Possible values from `Push-AppveyorArtifact` cmdlet `-Type` parameter.\n\nThe web UI only allows selection of `Auto`, `WebDeployPackage`, and\nunspecified (which it sends as the empty string but functions like\nomitting the property) for `updateProject`.\n\nAny string can be sent and will be saved/returned, but only these\nvalues have a function (as far as I am aware).",
+                                                "enum": [
+                                                    "Auto",
+                                                    "AzureCloudService",
+                                                    "AzureCloudServiceConfig",
+                                                    "ElasticBeanstalkPackage",
+                                                    "File",
+                                                    "NuGetPackage",
+                                                    "OctopusPackage",
+                                                    "SsdtPackage",
+                                                    "WebDeployPackage",
+                                                    "Zip"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "path"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "assemblyFileVersionFormat": {
+                                    "type": "string"
+                                },
+                                "assemblyInfoFile": {
+                                    "type": "string"
+                                },
+                                "assemblyInformationalVersionFormat": {
+                                    "type": "string"
+                                },
+                                "assemblyVersionFormat": {
+                                    "type": "string"
+                                },
+                                "beforeBuildScripts": {
+                                    "items": {
+                                        "properties": {
+                                            "language": {
+                                                "enum": [
+                                                    "cmd",
+                                                    "ps",
+                                                    "pwsh",
+                                                    "sh"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "script": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "script"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "beforeDeployScripts": {
+                                    "items": {
+                                        "properties": {
+                                            "language": {
+                                                "enum": [
+                                                    "cmd",
+                                                    "ps",
+                                                    "pwsh",
+                                                    "sh"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "script": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "script"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "beforePackageScripts": {
+                                    "items": {
+                                        "properties": {
+                                            "language": {
+                                                "enum": [
+                                                    "cmd",
+                                                    "ps",
+                                                    "pwsh",
+                                                    "sh"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "script": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "script"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "beforeTestScripts": {
+                                    "items": {
+                                        "properties": {
+                                            "language": {
+                                                "enum": [
+                                                    "cmd",
+                                                    "ps",
+                                                    "pwsh",
+                                                    "sh"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "script": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "script"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "branchesMode": {
+                                    "enum": [
+                                        "exclude",
+                                        "include"
+                                    ],
+                                    "type": "string"
+                                },
+                                "buildCloud": {
+                                    "items": {
+                                        "properties": {
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "buildMode": {
+                                    "enum": [
+                                        "msbuild",
+                                        "none",
+                                        "script"
+                                    ],
+                                    "type": "string"
+                                },
+                                "buildScripts": {
+                                    "description": "Only set/used when `buildMode` is `script`.",
+                                    "items": {
+                                        "properties": {
+                                            "language": {
+                                                "enum": [
+                                                    "cmd",
+                                                    "ps",
+                                                    "pwsh",
+                                                    "sh"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "script": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "script"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "cacheEntries": {
+                                    "items": {
+                                        "properties": {
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "cloneDepth": {
+                                    "minimum": 1,
+                                    "type": "integer"
+                                },
+                                "cloneFolder": {
+                                    "type": "string"
+                                },
+                                "cloneScripts": {
+                                    "items": {
+                                        "properties": {
+                                            "language": {
+                                                "enum": [
+                                                    "cmd",
+                                                    "ps",
+                                                    "pwsh",
+                                                    "sh"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "script": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "script"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "configuration": {
+                                    "items": {
+                                        "properties": {
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "configureNuGetAccountSource": {
+                                    "type": "boolean"
+                                },
+                                "configureNuGetProjectSource": {
+                                    "type": "boolean"
+                                },
+                                "deployMode": {
+                                    "enum": [
+                                        "providers",
+                                        "none",
+                                        "script"
+                                    ],
+                                    "type": "string"
+                                },
+                                "deployScripts": {
+                                    "items": {
+                                        "properties": {
+                                            "language": {
+                                                "enum": [
+                                                    "cmd",
+                                                    "ps",
+                                                    "pwsh",
+                                                    "sh"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "script": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "script"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "deployments": {
+                                    "items": {
+                                        "properties": {
+                                            "onBranch": {
+                                                "items": {
+                                                    "properties": {
+                                                        "value": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "onEnvironmentVariables": {
+                                                "items": {
+                                                    "properties": {
+                                                        "name": {
+                                                            "minLength": 1,
+                                                            "type": "string"
+                                                        },
+                                                        "value": {
+                                                            "properties": {
+                                                                "isEncrypted": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "value": {
+                                                                    "description": "Encrypted values can be created using the encryptValue operation.\n\nEmpty environment variables are represented by missing (null) value\nrather than an empty string.",
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "name",
+                                                        "value"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "provider": {
+                                                "enum": [
+                                                    "Agent",
+                                                    "AzureBlob",
+                                                    "AzureCS",
+                                                    "AzureWebJob",
+                                                    "BinTray",
+                                                    "FTP",
+                                                    "GitHub",
+                                                    "NuGet",
+                                                    "S3",
+                                                    "SqlDatabase",
+                                                    "WebDeploy",
+                                                    "Webhook"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "providerSettings": {
+                                                "items": {
+                                                    "properties": {
+                                                        "name": {
+                                                            "minLength": 1,
+                                                            "type": "string"
+                                                        },
+                                                        "value": {
+                                                            "properties": {
+                                                                "isEncrypted": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "value": {
+                                                                    "description": "Encrypted values can be created using the encryptValue operation.\n\nEmpty environment variables are represented by missing (null) value\nrather than an empty string.",
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "name",
+                                                        "value"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "required": [
+                                            "provider"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "disableNuGetPublishForOctopusPackages": {
+                                    "type": "boolean"
+                                },
+                                "disableNuGetPublishOnPullRequests": {
+                                    "type": "boolean"
+                                },
+                                "doNotIncrementBuildNumberOnPullRequests": {
+                                    "type": "boolean"
+                                },
+                                "dotnetCsprojAssemblyVersionFormat": {
+                                    "type": "string"
+                                },
+                                "dotnetCsprojFile": {
+                                    "type": "string"
+                                },
+                                "dotnetCsprojFileVersionFormat": {
+                                    "type": "string"
+                                },
+                                "dotnetCsprojInformationalVersionFormat": {
+                                    "type": "string"
+                                },
+                                "dotnetCsprojPackageVersionFormat": {
+                                    "type": "string"
+                                },
+                                "dotnetCsprojVersionFormat": {
+                                    "type": "string"
+                                },
+                                "environmentVariables": {
+                                    "items": {
+                                        "properties": {
+                                            "name": {
+                                                "minLength": 1,
+                                                "type": "string"
+                                            },
+                                            "value": {
+                                                "properties": {
+                                                    "isEncrypted": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "value": {
+                                                        "description": "Encrypted values can be created using the encryptValue operation.\n\nEmpty environment variables are represented by missing (null) value\nrather than an empty string.",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "required": [
+                                            "name",
+                                            "value"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "environmentVariablesMatrix": {
+                                    "items": {
+                                        "properties": {
+                                            "variables": {
+                                                "properties": {
+                                                    "name": {
+                                                        "minLength": 1,
+                                                        "type": "string"
+                                                    },
+                                                    "value": {
+                                                        "properties": {
+                                                            "isEncrypted": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "value": {
+                                                                "description": "Encrypted values can be created using the encryptValue operation.\n\nEmpty environment variables are represented by missing (null) value\nrather than an empty string.",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "name",
+                                                    "value"
+                                                ],
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "excludeBranches": {
+                                    "items": {
+                                        "properties": {
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "forceHttpsClone": {
+                                    "type": "boolean"
+                                },
+                                "hostsEntries": {
+                                    "items": {
+                                        "properties": {
+                                            "host": {
+                                                "minLength": 1,
+                                                "type": "string"
+                                            },
+                                            "ip": {
+                                                "minLength": 1,
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "host",
+                                            "ip"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "hotFixScripts": {
+                                    "items": {
+                                        "properties": {
+                                            "language": {
+                                                "enum": [
+                                                    "cmd",
+                                                    "ps",
+                                                    "pwsh",
+                                                    "sh"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "script": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "script"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "includeBranches": {
+                                    "items": {
+                                        "properties": {
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "includeNuGetReferences": {
+                                    "type": "boolean"
+                                },
+                                "initScripts": {
+                                    "items": {
+                                        "properties": {
+                                            "language": {
+                                                "enum": [
+                                                    "cmd",
+                                                    "ps",
+                                                    "pwsh",
+                                                    "sh"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "script": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "script"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "installScripts": {
+                                    "items": {
+                                        "properties": {
+                                            "language": {
+                                                "enum": [
+                                                    "cmd",
+                                                    "ps",
+                                                    "pwsh",
+                                                    "sh"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "script": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "script"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "matrixAllowFailures": {
+                                    "description": "Although the names and values are not enforced, the combinations which are meaningful are documented at https://www.appveyor.com/docs/build-configuration/#allow-failing-jobs",
+                                    "items": {
+                                        "properties": {
+                                            "variables": {
+                                                "properties": {
+                                                    "name": {
+                                                        "minLength": 1,
+                                                        "type": "string"
+                                                    },
+                                                    "value": {
+                                                        "properties": {
+                                                            "isEncrypted": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "value": {
+                                                                "description": "Encrypted values can be created using the encryptValue operation.\n\nEmpty environment variables are represented by missing (null) value\nrather than an empty string.",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "name",
+                                                    "value"
+                                                ],
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "matrixExcept": {
+                                    "items": {
+                                        "properties": {
+                                            "variables": {
+                                                "properties": {
+                                                    "name": {
+                                                        "minLength": 1,
+                                                        "type": "string"
+                                                    },
+                                                    "value": {
+                                                        "properties": {
+                                                            "isEncrypted": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "value": {
+                                                                "description": "Encrypted values can be created using the encryptValue operation.\n\nEmpty environment variables are represented by missing (null) value\nrather than an empty string.",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "name",
+                                                    "value"
+                                                ],
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "matrixExclude": {
+                                    "items": {
+                                        "properties": {
+                                            "variables": {
+                                                "properties": {
+                                                    "name": {
+                                                        "minLength": 1,
+                                                        "type": "string"
+                                                    },
+                                                    "value": {
+                                                        "properties": {
+                                                            "isEncrypted": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "value": {
+                                                                "description": "Encrypted values can be created using the encryptValue operation.\n\nEmpty environment variables are represented by missing (null) value\nrather than an empty string.",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "name",
+                                                    "value"
+                                                ],
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "matrixFastFinish": {
+                                    "type": "boolean"
+                                },
+                                "matrixOnly": {
+                                    "items": {
+                                        "properties": {
+                                            "variables": {
+                                                "properties": {
+                                                    "name": {
+                                                        "minLength": 1,
+                                                        "type": "string"
+                                                    },
+                                                    "value": {
+                                                        "properties": {
+                                                            "isEncrypted": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "value": {
+                                                                "description": "Encrypted values can be created using the encryptValue operation.\n\nEmpty environment variables are represented by missing (null) value\nrather than an empty string.",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "name",
+                                                    "value"
+                                                ],
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "maxJobs": {
+                                    "minimum": 1,
+                                    "type": "integer"
+                                },
+                                "msBuildInParallel": {
+                                    "type": "boolean"
+                                },
+                                "msBuildProjectFileName": {
+                                    "type": "string"
+                                },
+                                "msBuildVerbosity": {
+                                    "enum": [
+                                        "quiet",
+                                        "minimal",
+                                        "normal",
+                                        "detailed"
+                                    ],
+                                    "type": "string"
+                                },
+                                "notifications": {
+                                    "items": {
+                                        "properties": {
+                                            "provider": {
+                                                "enum": [
+                                                    "Campfire",
+                                                    "Email",
+                                                    "GitHubPullRequest",
+                                                    "HipChat",
+                                                    "Slack",
+                                                    "Webhook",
+                                                    "VSOTeamRoom"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "settings": {
+                                                "description": "This type is the union of the settings types for each of the various\nnotification types supported by the API.  The properties correspond to\nthe following notification types:\n\n#### All Types\n- onBuildSuccess\n- onBuildFailure\n- onBuildStatusChanged\n\n#### Campfire\n- account\n- authToken\n- room\n- template\n\n#### Email\n- subjectTemplate\n- bodyTemplate\n- recipients\n- recipientsValue\n\n#### GitHubPullRequest\n- authToken\n- template\n\n#### HipChat\n- authToken\n- from\n- room\n- template\n- serverUrl\n\n#### Slack\n- incomingWebhookUrl\n- authToken\n- channel\n- template\n\n#### Webhook\n- method\n- url\n- headers\n- headersValue\n- addCustomRequestBody\n- customRequestBodyContentType\n- customRequestBody\n\n#### VSOTeamRoom\n- vsoAccount\n- username\n- password\n- room\n- template\n",
+                                                "properties": {
+                                                    "account": {
+                                                        "type": "string"
+                                                    },
+                                                    "addCustomRequestBody": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "authToken": {
+                                                        "properties": {
+                                                            "isEncrypted": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "value": {
+                                                                "description": "Encrypted values can be created using the encryptValue operation.\n\nEmpty environment variables are represented by missing (null) value\nrather than an empty string.",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "bodyTemplate": {
+                                                        "type": "string"
+                                                    },
+                                                    "channel": {
+                                                        "type": "string"
+                                                    },
+                                                    "customRequestBody": {
+                                                        "type": "string"
+                                                    },
+                                                    "customRequestBodyContentType": {
+                                                        "type": "string"
+                                                    },
+                                                    "from": {
+                                                        "type": "string"
+                                                    },
+                                                    "headers": {
+                                                        "items": {
+                                                            "properties": {
+                                                                "name": {
+                                                                    "minLength": 1,
+                                                                    "type": "string"
+                                                                },
+                                                                "value": {
+                                                                    "properties": {
+                                                                        "isEncrypted": {
+                                                                            "type": "boolean"
+                                                                        },
+                                                                        "value": {
+                                                                            "description": "Encrypted values can be created using the encryptValue operation.\n\nEmpty environment variables are represented by missing (null) value\nrather than an empty string.",
+                                                                            "type": "string"
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "name",
+                                                                "value"
+                                                            ],
+                                                            "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                    },
+                                                    "headersValue": {
+                                                        "type": "string"
+                                                    },
+                                                    "incomingWebhookUrl": {
+                                                        "format": "uri",
+                                                        "type": "string"
+                                                    },
+                                                    "method": {
+                                                        "enum": [
+                                                            "GET",
+                                                            "POST"
+                                                        ],
+                                                        "type": "string"
+                                                    },
+                                                    "onBuildFailure": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "onBuildStatusChanged": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "onBuildSuccess": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "password": {
+                                                        "properties": {
+                                                            "isEncrypted": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "value": {
+                                                                "description": "Encrypted values can be created using the encryptValue operation.\n\nEmpty environment variables are represented by missing (null) value\nrather than an empty string.",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "recipients": {
+                                                        "items": {
+                                                            "properties": {
+                                                                "value": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                    },
+                                                    "recipientsValue": {
+                                                        "type": "string"
+                                                    },
+                                                    "room": {
+                                                        "type": "string"
+                                                    },
+                                                    "serverUrl": {
+                                                        "format": "uri",
+                                                        "type": "string"
+                                                    },
+                                                    "subjectTemplate": {
+                                                        "type": "string"
+                                                    },
+                                                    "template": {
+                                                        "type": "string"
+                                                    },
+                                                    "url": {
+                                                        "format": "uri",
+                                                        "type": "string"
+                                                    },
+                                                    "username": {
+                                                        "type": "string"
+                                                    },
+                                                    "vsoAccount": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "required": [
+                                            "provider",
+                                            "settings"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "onBuildErrorScripts": {
+                                    "items": {
+                                        "properties": {
+                                            "language": {
+                                                "enum": [
+                                                    "cmd",
+                                                    "ps",
+                                                    "pwsh",
+                                                    "sh"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "script": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "script"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "onBuildFinishScripts": {
+                                    "items": {
+                                        "properties": {
+                                            "language": {
+                                                "enum": [
+                                                    "cmd",
+                                                    "ps",
+                                                    "pwsh",
+                                                    "sh"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "script": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "script"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "onBuildSuccessScripts": {
+                                    "items": {
+                                        "properties": {
+                                            "language": {
+                                                "enum": [
+                                                    "cmd",
+                                                    "ps",
+                                                    "pwsh",
+                                                    "sh"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "script": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "script"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "onlyCommitsFiles": {
+                                    "items": {
+                                        "properties": {
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "operatingSystem": {
+                                    "items": {
+                                        "properties": {
+                                            "value": {
+                                                "description": "Defines the available build worker image templates used to provision a virtual machine for a build.  Images are updated regularly.  \"Previous\" selects the previous version of an image, for use as a temporary workaround for regressions.\n`Ubuntu` is the same as `Ubuntu1604`. `Previous Ubuntu` is the same as `Previous Ubuntu1604`.\nSee https://www.appveyor.com/docs/build-environment/#build-worker-images for details.",
+                                                "enum": [
+                                                    "Previous Ubuntu",
+                                                    "Previous Ubuntu1604",
+                                                    "Previous Ubuntu1804",
+                                                    "Previous Visual Studio 2013",
+                                                    "Previous Visual Studio 2015",
+                                                    "Previous Visual Studio 2017",
+                                                    "Ubuntu",
+                                                    "Ubuntu1604",
+                                                    "Ubuntu1804",
+                                                    "Visual Studio 2013",
+                                                    "Visual Studio 2015",
+                                                    "Visual Studio 2015 2",
+                                                    "Visual Studio 2017",
+                                                    "Visual Studio 2017 Preview",
+                                                    "Visual Studio 2019 Preview",
+                                                    "WMF 5",
+                                                    "Windows Server 2019"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "title": "Build worker image",
+                                    "type": "array"
+                                },
+                                "packageAspNetCoreProjects": {
+                                    "type": "boolean"
+                                },
+                                "packageAzureCloudServiceProjects": {
+                                    "type": "boolean"
+                                },
+                                "packageDotnetConsoleProjects": {
+                                    "type": "boolean"
+                                },
+                                "packageNuGetProjects": {
+                                    "type": "boolean"
+                                },
+                                "packageNuGetSymbols": {
+                                    "type": "boolean"
+                                },
+                                "packageWebApplicationProjects": {
+                                    "type": "boolean"
+                                },
+                                "packageWebApplicationProjectsBeanstalk": {
+                                    "type": "boolean"
+                                },
+                                "packageWebApplicationProjectsOctopus": {
+                                    "type": "boolean"
+                                },
+                                "packageWebApplicationProjectsXCopy": {
+                                    "type": "boolean"
+                                },
+                                "patchAssemblyInfo": {
+                                    "type": "boolean"
+                                },
+                                "patchDotnetCsproj": {
+                                    "type": "boolean"
+                                },
+                                "platform": {
+                                    "items": {
+                                        "properties": {
+                                            "value": {
+                                                "enum": [
+                                                    "ARM",
+                                                    "Any CPU",
+                                                    "x64",
+                                                    "x86"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "services": {
+                                    "items": {
+                                        "properties": {
+                                            "value": {
+                                                "enum": [
+                                                    "iis",
+                                                    "mongodb",
+                                                    "msmq",
+                                                    "mssql2008r2sp2",
+                                                    "mssql2008r2sp2rs",
+                                                    "mssql2012sp1",
+                                                    "mssql2012sp1rs",
+                                                    "mssql2014",
+                                                    "mssql2014rs",
+                                                    "mssql2016",
+                                                    "mysql",
+                                                    "postgresql"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "title": "OS services to start during the build process",
+                                    "type": "array"
+                                },
+                                "shallowClone": {
+                                    "type": "boolean"
+                                },
+                                "skipBranchWithPullRequests": {
+                                    "type": "boolean"
+                                },
+                                "skipCommitsFiles": {
+                                    "items": {
+                                        "properties": {
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "skipNonTags": {
+                                    "type": "boolean"
+                                },
+                                "skipTags": {
+                                    "type": "boolean"
+                                },
+                                "stacks": {
+                                    "items": {
+                                        "description": "A schema for values which have an undocumented/unknown type.\n\nAlthough the type of such values could be left unspecified according to\nJSON Schema (and by extension OpenAPI 2.0), such unspecified types cause\ntool failures (e.g. swagger-codegen).  So this type can be used as a\nplaceholder to prevent errors and document the behavior.\n",
+                                        "enum": [
+                                            "unknown"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    "maxItems": 0,
+                                    "type": "array"
+                                },
+                                "testAssemblies": {
+                                    "items": {
+                                        "properties": {
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "testCategories": {
+                                    "items": {
+                                        "properties": {
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "testCategoriesMatrix": {
+                                    "items": {
+                                        "properties": {
+                                            "categories": {
+                                                "items": {
+                                                    "properties": {
+                                                        "value": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "testCategoriesMode": {
+                                    "enum": [
+                                        "exclude",
+                                        "include"
+                                    ],
+                                    "type": "string"
+                                },
+                                "testMode": {
+                                    "enum": [
+                                        "auto",
+                                        "none",
+                                        "script"
+                                    ],
+                                    "type": "string"
+                                },
+                                "testScripts": {
+                                    "description": "Only set/used when `testMode` is `script`.",
+                                    "items": {
+                                        "properties": {
+                                            "language": {
+                                                "enum": [
+                                                    "cmd",
+                                                    "ps",
+                                                    "pwsh",
+                                                    "sh"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "script": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "script"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "xamarinRegisterAndroidProduct": {
+                                    "type": "boolean"
+                                },
+                                "xamarinRegisterIosProduct": {
+                                    "type": "boolean"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "customYmlName": {
+                            "type": "string"
+                        },
+                        "ignoreAppveyorYml": {
+                            "type": "boolean"
+                        },
+                        "nextBuildNumber": {
+                            "type": "integer"
+                        },
+                        "repositoryAuthentication": {
+                            "enum": [
+                                "credentials",
+                                "ssh"
+                            ],
+                            "type": "string"
+                        },
+                        "repositoryUsername": {
+                            "type": "string"
+                        },
+                        "scheduleCrontabExpression": {
+                            "description": "Build schedule as an NCrontab Expression.  See https://github.com/atifaziz/NCrontab/wiki/Crontab-Expression",
+                            "externalDocs": {
+                                "url": "https://www.appveyor.com/docs/build-configuration/#scheduled-builds"
+                            },
+                            "type": "string"
+                        },
+                        "sshPublicKey": {
+                            "type": "string"
+                        },
+                        "statusBadgeId": {
+                            "type": "string"
+                        },
+                        "versionFormat": {
+                            "minLength": 7,
+                            "pattern": "[{]build[}]",
+                            "type": "string"
+                        },
+                        "webhookId": {
+                            "type": "string"
+                        },
+                        "webhookUrl": {
+                            "format": "uri",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "versionFormat",
+                        "configuration"
+                    ],
+                    "type": "object"
+                }
+            ],
+            "type": "object"
+        }
+    }
+}

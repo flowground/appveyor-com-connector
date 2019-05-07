@@ -1,0 +1,27 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "Technically `roleId` has default value 0 and is not required, but\nsince role 0 never exists it would always cause a 404 response.\n",
+            "example": {
+                "email": "john@smith.com",
+                "roleId": 3040
+            },
+            "properties": {
+                "email": {
+                    "format": "email",
+                    "type": "string"
+                },
+                "roleId": {
+                    "minimum": 0,
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "email",
+                "roleId"
+            ],
+            "type": "object"
+        }
+    }
+}

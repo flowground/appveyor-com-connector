@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "confirmPassword": "password",
+                "email": "john@smith.com",
+                "fullName": "John Smith",
+                "generatePassword": false,
+                "password": "password",
+                "roleId": 4
+            },
+            "properties": {
+                "confirmPassword": {
+                    "format": "password",
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "email": {
+                    "format": "email",
+                    "type": "string"
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "generatePassword": {
+                    "type": "boolean"
+                },
+                "password": {
+                    "format": "password",
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "roleId": {
+                    "description": "Technically `roleId` has default value 0 and is not required, but\nsince role 0 never exists it would always cause a 404 response.\n",
+                    "minimum": 0,
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "fullName",
+                "email",
+                "roleId"
+            ],
+            "type": "object"
+        }
+    }
+}

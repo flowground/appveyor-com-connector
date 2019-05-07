@@ -1,0 +1,453 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "properties": {
+                                "deploymentEnvironmentId": {
+                                    "minimum": 0,
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "provider": {
+                                    "enum": [
+                                        "Agent",
+                                        "AzureBlob",
+                                        "AzureCS",
+                                        "AzureWebJob",
+                                        "BinTray",
+                                        "FTP",
+                                        "GitHub",
+                                        "NuGet",
+                                        "S3",
+                                        "SqlDatabase",
+                                        "WebDeploy",
+                                        "Webhook"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "properties": {
+                                "created": {
+                                    "format": "date-time",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "updated": {
+                                    "format": "date-time",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "properties": {
+                                "accountId": {
+                                    "type": "integer"
+                                },
+                                "projectsMode": {
+                                    "description": "0 is \"Any project can be deployed to the environment\"\n1 is \"Only selected projects can be deployed to the environment\"\n2 is \"All except selected projects can be deployed to the environment\"",
+                                    "enum": [
+                                        0,
+                                        1,
+                                        2
+                                    ],
+                                    "type": "integer"
+                                },
+                                "securityDescriptor": {
+                                    "properties": {
+                                        "accessRightDefinitions": {
+                                            "items": {
+                                                "properties": {
+                                                    "description": {
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "enum": [
+                                                            "Delete",
+                                                            "Deploy",
+                                                            "RunBuild",
+                                                            "Update",
+                                                            "View"
+                                                        ],
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "name"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "roleAces": {
+                                            "items": {
+                                                "properties": {
+                                                    "accessRights": {
+                                                        "items": {
+                                                            "properties": {
+                                                                "allowed": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "name": {
+                                                                    "enum": [
+                                                                        "Delete",
+                                                                        "Deploy",
+                                                                        "RunBuild",
+                                                                        "Update",
+                                                                        "View"
+                                                                    ],
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "name"
+                                                            ],
+                                                            "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                    },
+                                                    "isAdmin": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "roleId": {
+                                                        "minimum": 0,
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "tags": {
+                                    "description": "Comma-separated list of environment tags for dynamic grouping.\nAppears that any input is accepted.  The returned value only\ncontains case-preserving but insensitive unique values where\nspaces around \",\" are removed but otherwise preserved.  Empty\nvalues and items are allowed.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    ]
+                },
+                {
+                    "properties": {
+                        "environmentAccessKey": {
+                            "type": "string"
+                        },
+                        "projects": {
+                            "description": "Projects available for selection in UI.\nOnly present in response from getEnvironmentSettings.\n",
+                            "items": {
+                                "properties": {
+                                    "isSelected": {
+                                        "type": "boolean"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "projectId": {
+                                        "minimum": 0,
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "projectId",
+                                    "name",
+                                    "isSelected"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "selectedProjects": {
+                            "description": "Project IDs of selected projects",
+                            "items": {
+                                "minimum": 1,
+                                "type": "integer"
+                            },
+                            "type": "array"
+                        },
+                        "settings": {
+                            "properties": {
+                                "environmentVariables": {
+                                    "items": {
+                                        "properties": {
+                                            "name": {
+                                                "minLength": 1,
+                                                "type": "string"
+                                            },
+                                            "value": {
+                                                "properties": {
+                                                    "isEncrypted": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "value": {
+                                                        "description": "Encrypted values can be created using the encryptValue operation.\n\nEmpty environment variables are represented by missing (null) value\nrather than an empty string.",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "required": [
+                                            "name",
+                                            "value"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "notifications": {
+                                    "items": {
+                                        "properties": {
+                                            "provider": {
+                                                "enum": [
+                                                    "Campfire",
+                                                    "Email",
+                                                    "GitHubPullRequest",
+                                                    "HipChat",
+                                                    "Slack",
+                                                    "Webhook",
+                                                    "VSOTeamRoom"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "settings": {
+                                                "description": "This type is the union of the settings types for each of the various\nnotification types supported by the API.  The properties correspond to\nthe following notification types:\n\n#### All Types\n- onBuildSuccess\n- onBuildFailure\n- onBuildStatusChanged\n\n#### Campfire\n- account\n- authToken\n- room\n- template\n\n#### Email\n- subjectTemplate\n- bodyTemplate\n- recipients\n- recipientsValue\n\n#### GitHubPullRequest\n- authToken\n- template\n\n#### HipChat\n- authToken\n- from\n- room\n- template\n- serverUrl\n\n#### Slack\n- incomingWebhookUrl\n- authToken\n- channel\n- template\n\n#### Webhook\n- method\n- url\n- headers\n- headersValue\n- addCustomRequestBody\n- customRequestBodyContentType\n- customRequestBody\n\n#### VSOTeamRoom\n- vsoAccount\n- username\n- password\n- room\n- template\n",
+                                                "properties": {
+                                                    "account": {
+                                                        "type": "string"
+                                                    },
+                                                    "addCustomRequestBody": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "authToken": {
+                                                        "properties": {
+                                                            "isEncrypted": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "value": {
+                                                                "description": "Encrypted values can be created using the encryptValue operation.\n\nEmpty environment variables are represented by missing (null) value\nrather than an empty string.",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "bodyTemplate": {
+                                                        "type": "string"
+                                                    },
+                                                    "channel": {
+                                                        "type": "string"
+                                                    },
+                                                    "customRequestBody": {
+                                                        "type": "string"
+                                                    },
+                                                    "customRequestBodyContentType": {
+                                                        "type": "string"
+                                                    },
+                                                    "from": {
+                                                        "type": "string"
+                                                    },
+                                                    "headers": {
+                                                        "items": {
+                                                            "properties": {
+                                                                "name": {
+                                                                    "minLength": 1,
+                                                                    "type": "string"
+                                                                },
+                                                                "value": {
+                                                                    "properties": {
+                                                                        "isEncrypted": {
+                                                                            "type": "boolean"
+                                                                        },
+                                                                        "value": {
+                                                                            "description": "Encrypted values can be created using the encryptValue operation.\n\nEmpty environment variables are represented by missing (null) value\nrather than an empty string.",
+                                                                            "type": "string"
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "name",
+                                                                "value"
+                                                            ],
+                                                            "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                    },
+                                                    "headersValue": {
+                                                        "type": "string"
+                                                    },
+                                                    "incomingWebhookUrl": {
+                                                        "format": "uri",
+                                                        "type": "string"
+                                                    },
+                                                    "method": {
+                                                        "enum": [
+                                                            "GET",
+                                                            "POST"
+                                                        ],
+                                                        "type": "string"
+                                                    },
+                                                    "onBuildFailure": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "onBuildStatusChanged": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "onBuildSuccess": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "password": {
+                                                        "properties": {
+                                                            "isEncrypted": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "value": {
+                                                                "description": "Encrypted values can be created using the encryptValue operation.\n\nEmpty environment variables are represented by missing (null) value\nrather than an empty string.",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "recipients": {
+                                                        "items": {
+                                                            "properties": {
+                                                                "value": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                    },
+                                                    "recipientsValue": {
+                                                        "type": "string"
+                                                    },
+                                                    "room": {
+                                                        "type": "string"
+                                                    },
+                                                    "serverUrl": {
+                                                        "format": "uri",
+                                                        "type": "string"
+                                                    },
+                                                    "subjectTemplate": {
+                                                        "type": "string"
+                                                    },
+                                                    "template": {
+                                                        "type": "string"
+                                                    },
+                                                    "url": {
+                                                        "format": "uri",
+                                                        "type": "string"
+                                                    },
+                                                    "username": {
+                                                        "type": "string"
+                                                    },
+                                                    "vsoAccount": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "required": [
+                                            "provider",
+                                            "settings"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "providerSettings": {
+                                    "items": {
+                                        "properties": {
+                                            "name": {
+                                                "minLength": 1,
+                                                "type": "string"
+                                            },
+                                            "value": {
+                                                "properties": {
+                                                    "isEncrypted": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "value": {
+                                                        "description": "Encrypted values can be created using the encryptValue operation.\n\nEmpty environment variables are represented by missing (null) value\nrather than an empty string.",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "required": [
+                                            "name",
+                                            "value"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "deploymentEnvironmentId": 3018,
+                "environmentAccessKey": "gi3ttevuk7123",
+                "name": "production",
+                "settings": {
+                    "environmentVariables": [
+                        {
+                            "name": "my-var",
+                            "value": {
+                                "isEncrypted": false,
+                                "value": "123"
+                            }
+                        }
+                    ],
+                    "provider": "FTP",
+                    "providerSettings": [
+                        {
+                            "name": "server",
+                            "value": {
+                                "isEncrypted": false,
+                                "value": "ftp.myserver.com"
+                            }
+                        },
+                        {
+                            "name": "username",
+                            "value": {
+                                "isEncrypted": false,
+                                "value": "ftp-user"
+                            }
+                        },
+                        {
+                            "name": "password",
+                            "value": {
+                                "isEncrypted": true,
+                                "value": "password"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

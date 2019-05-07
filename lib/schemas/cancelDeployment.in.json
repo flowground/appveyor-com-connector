@@ -1,0 +1,20 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "deploymentId": 123
+            },
+            "properties": {
+                "deploymentId": {
+                    "minimum": 0,
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "deploymentId"
+            ],
+            "type": "object"
+        }
+    }
+}

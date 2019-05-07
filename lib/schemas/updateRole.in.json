@@ -1,0 +1,245 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "properties": {
+                                "created": {
+                                    "format": "date-time",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "updated": {
+                                    "format": "date-time",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "properties": {
+                                "isSystem": {
+                                    "readOnly": true,
+                                    "type": "boolean"
+                                },
+                                "name": {
+                                    "minLength": 1,
+                                    "type": "string"
+                                },
+                                "roleId": {
+                                    "minimum": 0,
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "roleId",
+                                "name"
+                            ],
+                            "type": "object"
+                        }
+                    ],
+                    "description": "Technically `roleId` has default value 0 and is not required, but\nsince role 0 never exists it would always cause a 404 response.\n"
+                },
+                {
+                    "properties": {
+                        "groups": {
+                            "items": {
+                                "properties": {
+                                    "name": {
+                                        "enum": [
+                                            "Account",
+                                            "BuildEnvironment",
+                                            "Deny",
+                                            "Environments",
+                                            "Projects",
+                                            "Roles",
+                                            "User",
+                                            "Users"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    "permissions": {
+                                        "items": {
+                                            "properties": {
+                                                "allowed": {
+                                                    "description": "State of the named permission.  `true` to allow, `false` to deny,\nmissing to inherit.\n",
+                                                    "type": "boolean"
+                                                },
+                                                "description": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "description": "Available permission names.  The names correspond to the following groups:\n#### AccountPermission\n- ManageApplicationAuthorizations\n- UpdateAccountDetails\n- UpdateBillingDetails\n#### BuildEnvironmentPermission\n- ConfigureBuildEnvironment\n#### DenyPermission\n- DenyAllProjectsEnvironments\n#### EnvironmentsPermission\n- DeployToEnvironment\n- ManageEnvironments\n- UpdateEnvironmentSettings\n#### ProjectsPermission\n- ManageProjects\n- RunProjectBuild\n- UpdateProjectSettings\n#### RolesPermission\n- AddRole\n- DeleteRole\n- UpdateRoleDetails\n#### UserPermission\n- ConfigureApiKeys\n#### UsersPermission\n- AddUser\n- DeleteUser\n- UpdateUserDetails\n",
+                                                    "enum": [
+                                                        "ManageApplicationAuthorizations",
+                                                        "UpdateAccountDetails",
+                                                        "UpdateBillingDetails",
+                                                        "ConfigureBuildEnvironment",
+                                                        "DenyAllProjectsEnvironments",
+                                                        "DeployToEnvironment",
+                                                        "ManageEnvironments",
+                                                        "UpdateEnvironmentSettings",
+                                                        "ManageProjects",
+                                                        "RunProjectBuild",
+                                                        "UpdateProjectSettings",
+                                                        "AddRole",
+                                                        "DeleteRole",
+                                                        "UpdateRoleDetails",
+                                                        "ConfigureApiKeys",
+                                                        "AddUser",
+                                                        "DeleteUser",
+                                                        "UpdateUserDetails"
+                                                    ],
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "name"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "permissions"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "created": "2014-03-18T20:12:08.4749886+00:00",
+                "groups": [
+                    {
+                        "name": "Deny",
+                        "permissions": [
+                            {
+                                "allowed": false,
+                                "description": "Deny all projects and environments, unless explicitly allowed",
+                                "name": "DenyAllProjectsEnvironments"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Projects",
+                        "permissions": [
+                            {
+                                "allowed": true,
+                                "description": "Create, delete projects, update project settings",
+                                "name": "ManageProjects"
+                            },
+                            {
+                                "allowed": true,
+                                "description": "Update project settings",
+                                "name": "UpdateProjectSettings"
+                            },
+                            {
+                                "allowed": false,
+                                "description": "Run project builds",
+                                "name": "RunProjectBuild"
+                            },
+                            {
+                                "allowed": false,
+                                "description": "Delete project builds",
+                                "name": "DeleteProjectBuilds"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Environments",
+                        "permissions": [
+                            {
+                                "allowed": false,
+                                "description": "Create, delete projects, update environment settings",
+                                "name": "ManageEnvironments"
+                            },
+                            {
+                                "allowed": false,
+                                "description": "Update environment settings",
+                                "name": "UpdateEnvironmentSettings"
+                            },
+                            {
+                                "allowed": false,
+                                "description": "Deploy to environment",
+                                "name": "DeployToEnvironment"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Account",
+                        "permissions": [
+                            {
+                                "allowed": false,
+                                "description": "Update account details",
+                                "name": "UpdateAccountDetails"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Users",
+                        "permissions": [
+                            {
+                                "allowed": false,
+                                "description": "Add new user",
+                                "name": "AddUser"
+                            },
+                            {
+                                "allowed": false,
+                                "description": "Update user details",
+                                "name": "UpdateUserDetails"
+                            },
+                            {
+                                "allowed": false,
+                                "description": "Delete user",
+                                "name": "DeleteUser"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Roles",
+                        "permissions": [
+                            {
+                                "allowed": false,
+                                "description": "Add new role",
+                                "name": "AddRole"
+                            },
+                            {
+                                "allowed": false,
+                                "description": "Update role details",
+                                "name": "UpdateRoleDetails"
+                            },
+                            {
+                                "allowed": false,
+                                "description": "Delete role",
+                                "name": "DeleteRole"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "User",
+                        "permissions": [
+                            {
+                                "allowed": false,
+                                "description": "Generate API keys",
+                                "name": "ConfigureApiKeys"
+                            }
+                        ]
+                    }
+                ],
+                "isSystem": false,
+                "name": "My Role",
+                "roleId": 3040
+            }
+        }
+    }
+}

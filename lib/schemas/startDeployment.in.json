@@ -1,0 +1,54 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "accountName": "your-account-name",
+                "buildJobId": "sfke9239ydzf",
+                "buildVersion": "1.2.0",
+                "environmentName": "environment-to-deploy",
+                "environmentVariables": {
+                    "another_var": "another value",
+                    "server": "myserver.com"
+                },
+                "projectSlug": "project-slug-from-url"
+            },
+            "properties": {
+                "accountName": {
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "buildJobId": {
+                    "description": "Optional job id with artifacts if build contains multiple jobs.",
+                    "type": "string"
+                },
+                "buildVersion": {
+                    "description": "Build to deploy",
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "environmentName": {
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "environmentVariables": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "type": "object"
+                },
+                "projectSlug": {
+                    "minLength": 1,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "environmentName",
+                "accountName",
+                "projectSlug",
+                "buildVersion"
+            ],
+            "type": "object"
+        }
+    }
+}

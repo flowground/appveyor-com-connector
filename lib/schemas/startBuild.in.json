@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "accountName": "your-account-name",
+                "branch": "master",
+                "environmentVariables": {
+                    "another_var": "another value",
+                    "my_var": "value"
+                },
+                "projectSlug": "project-slug-from-url"
+            },
+            "properties": {
+                "accountName": {
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "commitId": {
+                    "type": "string"
+                },
+                "environmentVariables": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "type": "object"
+                },
+                "projectSlug": {
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "pullRequestId": {
+                    "description": "Can not be used with `branch` or `commitId`",
+                    "minimum": 1,
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "accountName",
+                "projectSlug"
+            ],
+            "type": "object"
+        }
+    }
+}

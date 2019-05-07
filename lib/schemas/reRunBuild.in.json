@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "buildId": 23864,
+                "reRunIncomplete": true
+            },
+            "properties": {
+                "buildId": {
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "reRunIncomplete": {
+                    "description": "Set `reRunIncomplete` set to `false` (default value) for full build re-run. Set it set to `true` to rerun only failed or cancelled jobs in multijob build.",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "buildId"
+            ],
+            "type": "object"
+        }
+    }
+}

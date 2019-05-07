@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "plainValue": "encryptme"
+            },
+            "properties": {
+                "plainValue": {
+                    "default": "",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

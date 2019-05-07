@@ -1,0 +1,42 @@
+{
+    "type": "object",
+    "properties": {
+        "accountName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1
+        },
+        "projectSlug": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "items": {
+                "properties": {
+                    "name": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "value": {
+                        "properties": {
+                            "isEncrypted": {
+                                "type": "boolean"
+                            },
+                            "value": {
+                                "description": "Encrypted values can be created using the encryptValue operation.\n\nEmpty environment variables are represented by missing (null) value\nrather than an empty string.",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "name",
+                    "value"
+                ],
+                "type": "object"
+            },
+            "type": "array"
+        }
+    }
+}

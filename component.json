@@ -1,0 +1,867 @@
+{
+    "title": "AppVeyor",
+    "description": "AppVeyor is a hosted continuous integration service which runs on Microsoft\nWindows.  The AppVeyor REST API provides a RESTful way to interact with the\nAppVeyor service.  This includes managing projects, builds, deployments,\nand the teams that build them.\n\nAdditional help and discussion of the AppVeyor REST API is available at\nhttp://help.appveyor.com/discussions\n\nThis Swagger definition is an **unofficial** description of the AppVeyor\nREST API maintained at https://github.com/kevinoid/appveyor-swagger\nPlease report any issues or suggestions for this Swagger definition at\nhttps://github.com/kevinoid/appveyor-swagger/issues/new\n\n#### API Conventions\n\nFields which are missing from update operations (`PUT` requests) are\ntypically reset to their default values.  So although most fields are not\ntechnically required, they should usually be specified in practice.\n",
+    "docsUrl": "https://www.appveyor.com/docs/api/",
+    "url": "https://api.apis.guru/v2/specs/appveyor.com/1.0.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://ci.appveyor.com/api",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "apiToken": {
+                "label": "Authorization (apiToken)",
+                "viewClass": "TextFieldView",
+                "note": "API token can be acquired from https://ci.appveyor.com/api-token\nThis value must be passed to the server in the `Authorization` header as `\"Bearer <token>\"`.  Since [bearer token authentication support is not explicitly supported in OpenAPI 2.0](https://github.com/OAI/OpenAPI-Specification/issues/583), client code will vary.  Clients created with [swagger-codegen](https://github.com/swagger-api/swagger-codegen) should set `apiKeyPrefix` to `\"Bearer\"` and set `apiKey` to the token.  Other clients may need to set `apiKey` to the string `\"Bearer <token>\"`.\nNote that this should be [fixed in OpenAPI 3.0](https://github.com/OAI/OpenAPI-Specification/pull/807)), whenever that becomes available and supported.\n#### User-Level API Keys\nTo use a user-level API key (prefixed with \"v2.\"), `basePath` must be changed to `/api/account/{accountName}` where `{accountName}` is the name of the account for which requests will be made."
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "encryptValue": {
+            "main": "./lib/actions/encryptValue.js",
+            "title": "Encrypt a value for use in StoredValue.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/encryptValue.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getBuildArtifacts": {
+            "main": "./lib/actions/getBuildArtifacts.js",
+            "title": "Get build artifacts",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getBuildArtifacts.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getBuildArtifact": {
+            "main": "./lib/actions/getBuildArtifact.js",
+            "title": "Download build artifact",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getBuildArtifact.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getBuildLog": {
+            "main": "./lib/actions/getBuildLog.js",
+            "title": "Download build log",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getBuildLog.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "startBuild": {
+            "main": "./lib/actions/startBuild.js",
+            "title": "Start build of branch most recent commit",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/startBuild.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "reRunBuild": {
+            "main": "./lib/actions/reRunBuild.js",
+            "title": "Re-run build",
+            "description": "If `reRunIncomplete` is `true` and all jobs in the referenced build completed successfully, a 500 Internal Server Error is returned with the message \"No failed or cancelled jobs in build with ID {buildId}\".",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/reRunBuild.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cancelBuild": {
+            "main": "./lib/actions/cancelBuild.js",
+            "title": "Cancel build",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cancelBuild.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCollaborators": {
+            "main": "./lib/actions/getCollaborators.js",
+            "title": "Get collaborators",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCollaborators.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addCollaborator": {
+            "main": "./lib/actions/addCollaborator.js",
+            "title": "Add collaborator",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addCollaborator.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateCollaborator": {
+            "main": "./lib/actions/updateCollaborator.js",
+            "title": "Update collaborator",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateCollaborator.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteCollaborator": {
+            "main": "./lib/actions/deleteCollaborator.js",
+            "title": "Delete collaborator",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteCollaborator.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCollaborator": {
+            "main": "./lib/actions/getCollaborator.js",
+            "title": "Get collaborator",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCollaborator.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "startDeployment": {
+            "main": "./lib/actions/startDeployment.js",
+            "title": "Start deployment",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/startDeployment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cancelDeployment": {
+            "main": "./lib/actions/cancelDeployment.js",
+            "title": "Cancel deployment",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cancelDeployment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getDeployment": {
+            "main": "./lib/actions/getDeployment.js",
+            "title": "Get deployment",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getDeployment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getEnvironments": {
+            "main": "./lib/actions/getEnvironments.js",
+            "title": "Get environments",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getEnvironments.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addEnvironment": {
+            "main": "./lib/actions/addEnvironment.js",
+            "title": "Add environment",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addEnvironment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateEnvironment": {
+            "main": "./lib/actions/updateEnvironment.js",
+            "title": "Update environment",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateEnvironment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteEnvironment": {
+            "main": "./lib/actions/deleteEnvironment.js",
+            "title": "Delete environment",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteEnvironment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getEnvironmentDeployments": {
+            "main": "./lib/actions/getEnvironmentDeployments.js",
+            "title": "Get environment deployments",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getEnvironmentDeployments.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getEnvironmentSettings": {
+            "main": "./lib/actions/getEnvironmentSettings.js",
+            "title": "Get environment settings",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getEnvironmentSettings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getProjects": {
+            "main": "./lib/actions/getProjects.js",
+            "title": "Get projects",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getProjects.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addProject": {
+            "main": "./lib/actions/addProject.js",
+            "title": "Add project",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addProject.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateProject": {
+            "main": "./lib/actions/updateProject.js",
+            "title": "Update project",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateProject.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getPublicProjectStatusBadge": {
+            "main": "./lib/actions/getPublicProjectStatusBadge.js",
+            "title": "Get status badge image for a project with a public repository",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getPublicProjectStatusBadge.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getProjectStatusBadge": {
+            "main": "./lib/actions/getProjectStatusBadge.js",
+            "title": "Get project status badge image",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getProjectStatusBadge.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getProjectBranchStatusBadge": {
+            "main": "./lib/actions/getProjectBranchStatusBadge.js",
+            "title": "Get project branch status badge image",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getProjectBranchStatusBadge.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteProject": {
+            "main": "./lib/actions/deleteProject.js",
+            "title": "Delete project",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteProject.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getProjectLastBuild": {
+            "main": "./lib/actions/getProjectLastBuild.js",
+            "title": "Get project last build",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getProjectLastBuild.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getProjectArtifact": {
+            "main": "./lib/actions/getProjectArtifact.js",
+            "title": "Get last successful build artifact",
+            "description": "The `job` parameter is mandatory if the build contains multiple jobs.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getProjectArtifact.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getProjectLastBuildBranch": {
+            "main": "./lib/actions/getProjectLastBuildBranch.js",
+            "title": "Get project last branch build",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getProjectLastBuildBranch.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getProjectBuildByVersion": {
+            "main": "./lib/actions/getProjectBuildByVersion.js",
+            "title": "Get project build by version",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getProjectBuildByVersion.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteProjectBuildCache": {
+            "main": "./lib/actions/deleteProjectBuildCache.js",
+            "title": "Delete project build cache",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteProjectBuildCache.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getProjectDeployments": {
+            "main": "./lib/actions/getProjectDeployments.js",
+            "title": "Get project deployments",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getProjectDeployments.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getProjectHistory": {
+            "main": "./lib/actions/getProjectHistory.js",
+            "title": "Get project history",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getProjectHistory.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getProjectSettings": {
+            "main": "./lib/actions/getProjectSettings.js",
+            "title": "Get project settings",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getProjectSettings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateProjectBuildNumber": {
+            "main": "./lib/actions/updateProjectBuildNumber.js",
+            "title": "Update project build number",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateProjectBuildNumber.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getProjectEnvironmentVariables": {
+            "main": "./lib/actions/getProjectEnvironmentVariables.js",
+            "title": "Get project environment variables",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getProjectEnvironmentVariables.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateProjectEnvironmentVariables": {
+            "main": "./lib/actions/updateProjectEnvironmentVariables.js",
+            "title": "Update project environment variables",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateProjectEnvironmentVariables.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getProjectSettingsYaml": {
+            "main": "./lib/actions/getProjectSettingsYaml.js",
+            "title": "Get project settings in YAML",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getProjectSettingsYaml.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateProjectSettingsYaml": {
+            "main": "./lib/actions/updateProjectSettingsYaml.js",
+            "title": "Update project settings in YAML",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "text/plain": "text/plain",
+                        "application/json": "application/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateProjectSettingsYaml.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getRoles": {
+            "main": "./lib/actions/getRoles.js",
+            "title": "Get roles",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getRoles.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addRole": {
+            "main": "./lib/actions/addRole.js",
+            "title": "Add role",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addRole.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateRole": {
+            "main": "./lib/actions/updateRole.js",
+            "title": "Update role",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateRole.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteRole": {
+            "main": "./lib/actions/deleteRole.js",
+            "title": "Delete role",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteRole.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getRole": {
+            "main": "./lib/actions/getRole.js",
+            "title": "Get role",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getRole.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getUsers": {
+            "main": "./lib/actions/getUsers.js",
+            "title": "Get users",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getUsers.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addUser": {
+            "main": "./lib/actions/addUser.js",
+            "title": "Add user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addUser.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateUser": {
+            "main": "./lib/actions/updateUser.js",
+            "title": "Update user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateUser.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteUser": {
+            "main": "./lib/actions/deleteUser.js",
+            "title": "Delete user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteUser.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getUser": {
+            "main": "./lib/actions/getUser.js",
+            "title": "Get user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getUser.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

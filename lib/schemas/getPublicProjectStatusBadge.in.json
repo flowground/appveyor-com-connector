@@ -1,0 +1,29 @@
+{
+    "type": "object",
+    "properties": {
+        "branch": {
+            "type": "string",
+            "minLength": 1
+        },
+        "svg": {
+            "type": "boolean",
+            "default": false
+        },
+        "retina": {
+            "type": "boolean",
+            "default": false
+        },
+        "passingText": {
+            "type": "string",
+            "minLength": 1
+        },
+        "failingText": {
+            "type": "string",
+            "minLength": 1
+        },
+        "pendingText": {
+            "type": "string",
+            "minLength": 1
+        }
+    }
+}

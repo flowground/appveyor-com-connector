@@ -1,0 +1,91 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "created": {
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "updated": {
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "accountId": {
+                            "minimum": 0,
+                            "readOnly": true,
+                            "type": "integer"
+                        },
+                        "accountName": {
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "email": {
+                            "format": "email",
+                            "type": "string"
+                        },
+                        "fullName": {
+                            "type": "string"
+                        },
+                        "isCollaborator": {
+                            "readOnly": true,
+                            "type": "boolean"
+                        },
+                        "isOwner": {
+                            "readOnly": true,
+                            "type": "boolean"
+                        },
+                        "pageSize": {
+                            "minimum": 0,
+                            "readOnly": true,
+                            "type": "integer"
+                        },
+                        "password": {
+                            "format": "password",
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "roleId": {
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "roleName": {
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "twoFactorAuthEnabled": {
+                            "type": "boolean"
+                        },
+                        "userId": {
+                            "minimum": 0,
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "fullName",
+                        "email"
+                    ],
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "email": "john@smith.com",
+                "failedBuildNotification": "all",
+                "fullName": "John Smith",
+                "notifyWhenBuildStatusChangedOnly": true,
+                "roleId": 4,
+                "successfulBuildNotification": "all",
+                "userId": 3019
+            }
+        }
+    }
+}

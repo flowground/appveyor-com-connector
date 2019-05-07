@@ -1,0 +1,27 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "Technically `userId` and `roleId` have default value 0 and are not\nrequired, but since user 0 and role 0 never exist it would always cause\na 404 response.\n",
+            "example": {
+                "roleId": 3040,
+                "userId": 2018
+            },
+            "properties": {
+                "roleId": {
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "userId": {
+                    "minimum": 0,
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "userId",
+                "roleId"
+            ],
+            "type": "object"
+        }
+    }
+}

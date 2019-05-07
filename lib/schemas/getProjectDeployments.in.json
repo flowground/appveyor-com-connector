@@ -1,0 +1,19 @@
+{
+    "type": "object",
+    "properties": {
+        "accountName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1
+        },
+        "projectSlug": {
+            "required": true,
+            "type": "string"
+        },
+        "recordsNumber": {
+            "required": true,
+            "type": "integer",
+            "minimum": 0
+        }
+    }
+}

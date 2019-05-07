@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "deploymentId": {
+            "required": true,
+            "type": "integer",
+            "minimum": 0
+        }
+    }
+}

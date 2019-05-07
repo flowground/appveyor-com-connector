@@ -1,0 +1,54 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "`repositoryAuthentication` is only used for git, mercurial, subversion `repositoryProvider`.",
+            "example": {
+                "repositoryName": "FeodorFitsner/demo-app",
+                "repositoryProvider": "gitHub"
+            },
+            "properties": {
+                "repositoryAuthentication": {
+                    "enum": [
+                        "credentials",
+                        "ssh"
+                    ],
+                    "type": "string"
+                },
+                "repositoryName": {
+                    "description": "URL when repositoryProvider is git, mercurial, subversion username/project when repositoryProvider is gitHub",
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "repositoryPassword": {
+                    "description": "Required if repositoryAuthentication is credentials",
+                    "format": "password",
+                    "type": "string"
+                },
+                "repositoryProvider": {
+                    "enum": [
+                        "bitBucket",
+                        "git",
+                        "gitHub",
+                        "gitLab",
+                        "kiln",
+                        "mercurial",
+                        "stash",
+                        "subversion",
+                        "vso"
+                    ],
+                    "type": "string"
+                },
+                "repositoryUsername": {
+                    "description": "Required if repositoryAuthentication is credentials",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "repositoryProvider",
+                "repositoryName"
+            ],
+            "type": "object"
+        }
+    }
+}

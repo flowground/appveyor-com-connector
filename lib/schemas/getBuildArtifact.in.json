@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "properties": {
+        "jobId": {
+            "required": true,
+            "type": "string"
+        },
+        "artifactFileName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1
+        }
+    }
+}

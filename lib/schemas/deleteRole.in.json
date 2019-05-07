@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "roleId": {
+            "required": true,
+            "type": "integer",
+            "minimum": 0
+        }
+    }
+}

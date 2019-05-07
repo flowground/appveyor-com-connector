@@ -1,0 +1,18 @@
+{
+    "type": "object",
+    "properties": {
+        "recordsNumber": {
+            "required": true,
+            "type": "integer",
+            "minimum": 0
+        },
+        "startBuildId": {
+            "type": "integer",
+            "minimum": 0
+        },
+        "branch": {
+            "type": "string",
+            "minLength": 1
+        }
+    }
+}
