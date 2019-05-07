@@ -1,11 +1,11 @@
-# ![LOGO](logo.png) AppVeyor MSP Connector
+# ![LOGO](logo.png) AppVeyor **flow**ground Connector
 
 ## Description
 
-A generated MSP connector for the AppVeyor API (version 1.0.0).
+A generated **flow**ground connector for the AppVeyor API (version 1.0.0).
 
 Generated from: https://api.apis.guru/v2/specs/appveyor.com/1.0.0/swagger.json<br/>
-Generated at: 2019-05-07T11:17:13+03:00
+Generated at: 2019-05-07T17:36:55+03:00
 
 ## API Description
 
@@ -390,7 +390,7 @@ default/unspecified - look for artifact in both PR an non-PR builds.
 
 ## License
 
-flowground :- Telekom iPaaS / appveyor-com-connector<br/>
+**flow**ground :- Telekom iPaaS / appveyor-com-connector<br/>
 Copyright © 2019, [Deutsche Telekom AG](https://www.telekom.de)<br/>
 contact: flowground@telekom.de
 
